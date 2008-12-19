@@ -4,7 +4,7 @@
   .text
     = @release.description
   .image
-    = image_tag url_for_file_column(@release, "image"), :size => "500x375" 
+    = image_tag url_for_file_column(@release, "image"), :size => "500x375"  if @release.image
   .tracks
     %table
       - @release.tracks.sort{|a,b| a.position <=> b.position}.each do |t|

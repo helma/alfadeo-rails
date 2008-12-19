@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
 
 	layout 'alfadeo'
+
 	private
 
 	def authorize
