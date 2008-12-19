@@ -1,0 +1,30 @@
+#!/bin/bash
+
+export RAILS_ROOT=`pwd`
+source script/install/variables
+
+mkdir -p $bin_dir
+mkdir -p $plugin_dir
+
+# rubygems
+
+echo "Installing gems"
+
+# install gems
+#           gem          version options
+gem_install rails        2.1.2 
+gem_install sqlite3-ruby 1.2.4
+gem_install haml         2.0.3
+gem_install thin         1.0.0
+
+# create haml plugin
+rm -rf vendor/plugins/haml && vendor/bin/haml --rails .
+
+# install rails plugins
+#						origin                              version          destination        
+#git_install git://github.com/activescaffold/active_scaffold.git        rails-2.1            $plugin_dir/active_scaffold
+#git_install git://github.com/activescaffold/active_scaffold_sortable.git master $plugin_dir/active_scaffold_sortable
+
+#git_install git://github.com/activescaffold/file_column.git master  $plugin_dir/file_column
+#git_install $git_url/exception_notification.git rails-2-1-stable $plugin_dir/exception_notification
+

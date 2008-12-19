@@ -1,0 +1,25 @@
+.container
+  .titel
+    = @release.name
+  .text
+    = @release.description
+  .image
+    = image_tag url_for_file_column(@release, "image"), :size => "500x375" 
+  .tracks
+    %table
+      - @release.tracks.sort{|a,b| a.position <=> b.position}.each do |t|
+        %tr
+          %td.trackname
+            = link_to t.name, url_for_file_column(t, "file")
+          %td.size.right
+            = sprintf("%.2f", File.size?(RAILS_ROOT+'/public'+url_for_file_column(t, "file")).to_f/1024/1024) 
+          %td.size.left
+            MB
+          %td.right
+            = link_to(image_tag("loudspeaker.png",:alt => 'play', :height => "14"), url_for_file_column(t, "file") )
+
+  .license
+    = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")
+    This work is licensed under a 
+    = link_to "Creative Commons Attribution-Share Alike 3.0 Unported License", "http://creativecommons.org/licenses/by-sa/3.0/"
+

@@ -1,0 +1,99 @@
+<div id='centered_main'>
+
+	<table>
+
+		<% ['mix', 'track'].each do |track_type| %>
+
+		<tr><th colspan="3" id='h'><%= track_type.pluralize %></th>
+		<% next_id = Track.find_all.size + 1
+		button_txt = '[new '+track_type+']' %>
+		<th colspan='3'><%= link_to button_txt, :controller => 'admin', :action => 'upload', :id => next_id , :type => track_type, :format => 'mp3' %></th></tr>
+
+		<% idx = 0 %>
+
+		<tr>
+			<th></th>
+			<th>ID</th>
+			<th>displayed name</th>
+			<th colspan='2' id='center'>move</th>
+			<th></th>
+			<th id='right'>mp3</th>
+			<td id='center'>play</td>
+			<th id='right'>ogg</th>
+			<td id='center'>play</td>
+			<th id='center'>upload</th>
+		</tr>
+
+		<% Track.find_all_by_track_type(track_type, :order => 'position').each do |track|
+		if !track.hidden
+			idx += 1
+		%>
+
+		<tr>
+
+			<td id='right'><%= idx %>.</td>
+			<td id='right'><%= track.id %></td>
+			<% form_for(:track, @track,
+				:url => {:action => 'save_name', :id => track.id}) do |form| %>
+			<td><%= text_field :track, :displayed_name, :object => track, :size => '20' %></td>
+			<% end %>
+			<td id='center'>
+				<%= link_to '[up]', :controller => 'admin', :action => 'up', :type => track_type, :position => track.position %>
+				</td><td id='center'>
+				<%= link_to '[down]', :controller => 'admin', :action => 'down',  :type => track_type, :position => track.position %>
+				</td>
+				<td id='center'><%= link_to '[hide]', :controller => 'admin', :action => 'hide',  :id => track.id %></td>
+				<td id='right'><%= track.file('mp3') %></td>
+				<td id='center'><%= link_to '[>]', :controller => 'admin', :action => 'play', :id => track.id, :format => 'mp3' %> </td>
+				<td id='right'><%= track.file('ogg') %> </td>
+				<td id='center'><%= link_to '[>]', :controller => 'admin', :action => 'play', :id => track.id, :format => 'ogg' %> </td>
+				<td><%= link_to '[new version]', :controller => 'admin', :action => 'upload', :id => track.id, :format => 'mp3' %> </td>
+
+		</tr>
+
+	 <% end %>
+	 <% end %>
+	 <% end %>
+
+		<tr><th colspan="3" id='h'>hidden</th></tr>
+
+		<% idx = 0 %>
+
+		<tr>
+			<th></th>
+			<th>ID</th>
+			<th>displayed name</th>
+			<th colspan='2' id='center'></th>
+			<th></th>
+			<th id='right'>mp3</th>
+			<td id='center'>play</td>
+			<th id='right'>ogg</th>
+			<td id='center'>play</td>
+		</tr>
+
+		<% Track.find_all_by_hidden(:true).each do |track|
+			idx += 1 %>
+		<tr>
+
+			<td id='right'><%= idx %>.</td>
+			<td id='right'><%= track.id %></td>
+			<% form_for(:track, @track,
+				:url => {:action => 'save_name', :id => track.id}) do |form| %>
+			<td><%= text_field :track, :displayed_name, :object => track, :size => '20' %></td>
+			<% end %>
+			<td  colspan='2' id='center'>
+				</td>
+				<td id='center'><%= link_to '[show]', :controller => 'admin', :action => 'show',  :id => track.id %></td>
+				<td id='right'><%= track.file('mp3') %></td>
+				<td id='center'><%= link_to '[>]', :controller => 'admin', :action => 'play', :id => track.id, :format => 'mp3' %> </td>
+				<td id='right'><%= track.file('ogg') %></td>
+				<td id='center'><%= link_to '[>]', :controller => 'admin', :action => 'play', :id => track.id, :format => 'ogg' %> </td>
+				<td><%= link_to '[new version]', :controller => 'admin', :action => 'upload', :id => track.id, :format => 'mp3' %> </td>
+
+		</tr>
+
+	 <% end %>
+
+	</table>
+
+</div>

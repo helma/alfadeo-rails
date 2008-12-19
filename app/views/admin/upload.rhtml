@@ -1,0 +1,25 @@
+<%= error_messages_for('track') %>
+
+<table>
+
+	<tr>
+		<td></td>
+		<td colspan='3'>1. Browse =&gt; 2. Upload</td>
+	</tr>
+	<tr>
+		<% if @track.file(params[:format]) %> 
+		<th>replace <%= @track.file(params[:format]) %> with</th>
+		<% else %>
+		<th>add <%= params[:format]%> <%= @track.track_type %></th>
+		<% end %>
+	<% form_for(:track, @track,
+	:url => {:action => 'save_file', :format => params[:format], :id => params[:id], :type => params[:type]},
+							:html => {:multipart => true}) do |form| %>
+		<td id='center'><%= form.file_field :data %></td>
+		<td id='center'> <%= submit_tag('Upload') %> </td>
+	<% end %>
+	</tr>
+
+</table>
+
+

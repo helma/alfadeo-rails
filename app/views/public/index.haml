@@ -1,0 +1,22 @@
+.container
+  .titel Welcome to alfadeo!
+  .text
+    We are an electronic live band from Freiburg/Germany.
+    %br All tracks are live recordings and have been slightly edited and mastered for this website.
+  .releases
+    %table
+      %tr
+        %th Releases
+      - @releases.each do |r|
+        %tr
+          %td
+            = link_to image_tag(url_for_file_column(r, "image"), :size => "50x38"), :action => 'show', :id => r.id
+          %td
+            = r.description
+          %th.right
+            = link_to r.name, :action => 'show', :id => r.id
+
+  .license
+    = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")
+    This work is licensed under a 
+    = link_to "Creative Commons Attribution-Share Alike 3.0 Unported License", "http://creativecommons.org/licenses/by-sa/3.0/"

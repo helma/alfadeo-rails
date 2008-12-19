@@ -1,0 +1,55 @@
+a { text-decoration: none }
+a:link { color: lightgrey }    /* noch nicht besuchte Ziele */
+a:visited { color: lightsteelblue } /* besuchte Ziele */
+a:hover { color: white}   /* Verweise bei "MouseOver" */
+
+body {
+	background-color: darkslateblue;
+	font-family: monospace;
+	color : lightgrey;
+	text-align: center;
+}
+h1 {
+	font-style: italic;
+	color : lightsteelblue ;
+}
+
+table {
+	/*background-image:url(background.jpg); */
+	background-color: black;
+	margin: 1%;
+	border-style: groove;
+	border-width: 2px;
+	padding: 1%;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-left: auto;
+	margin-right: auto ;
+	text-align: left;
+}
+#h {
+	font-size: larger;
+	padding-top: 5%;
+}
+
+#page_nav {
+	float: right;
+}
+#center {
+	text-align: center;
+}
+#right {
+	text-align: right;
+}
+#left {
+	text-align: left;
+}
+
+.button-to {
+	font-size: xx-small;
+
+}
+#em {
+	text-align: center;
+	font-style: italic;
+}
