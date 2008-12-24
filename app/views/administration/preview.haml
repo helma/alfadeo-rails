@@ -1,0 +1,5 @@
+= render :partial => "public/show"
+- form_for :release, @release, :url => { :action => "publish", :id => params[:id] } do |f| 
+  .confirm
+    = submit_tag 'Publish'
+    = link_to 'Cancel', :action => :index

@@ -1,0 +1,45 @@
+.container
+  .titel
+    = @release.name
+  .text
+    = @release.date
+    %br
+    = @release.description
+  .image
+    = image_tag @release.image, :size => "500x375"  if @release.image
+  .tracks
+    %table
+      %tr
+        %td &nbsp;
+      - @release.sorted_tracks.each do |t|
+        %tr
+          %td.trackname
+            = t.name
+          %td.size
+            = t.duration
+          %td.play
+            = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13"), url_for_file_column(t,"file")
+
+      %tr
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;
+      %tr
+        %td.trackname play all
+        %td.size
+          = @release.duration
+        %td.play
+          = link_to(image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13"), :action => :play, :id => @release.id )
+      %tr
+        %td.trackname
+          = link_to "download all (zip)", url_for_file_column(@release, "zip")
+        %td.size
+          = sprintf("%.2f", File.size?(@release.zip).to_f/1024/1024)+"&nbsp;MB" if File.exists?(@release.zip)
+        %td.download
+          = link_to image_tag("download.gif",:alt => 'download', :size => "13x13"), url_for_file_column(@release, "zip")
+
+  .license
+    = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")
+    This work is licensed under a 
+    = link_to "Creative Commons Attribution-Share Alike 3.0 Unported License", "http://creativecommons.org/licenses/by-sa/3.0/"
+
