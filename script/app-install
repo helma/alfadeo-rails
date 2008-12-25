@@ -17,6 +17,7 @@ gem_install sqlite3-ruby 1.2.4
 gem_install haml         2.0.3
 gem_install thin         1.0.0
 gem_install ruby-mp3info 0.6.10
+gem_install rubyzip      0.9.1
 
 # create haml plugin
 rm -rf vendor/plugins/haml && vendor/bin/haml --rails .

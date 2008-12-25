@@ -6,7 +6,7 @@
     %br
     = @release.description
   .image
-    = image_tag @release.image, :size => "500x375"  if @release.image
+    = image_tag url_for_file_column(@release,"image"), :size => "500x375"  if @release.image
   .tracks
     %table
       %tr

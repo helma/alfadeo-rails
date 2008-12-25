@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20081219172618) do
     t.string  "description"
     t.string  "image"
     t.string  "zip"
-    t.date    "date",        :default => '2008-12-24'
+    t.date    "date",        :default => '2008-12-25'
     t.boolean "publish",     :default => false
     t.integer "position"
     t.integer "nr"

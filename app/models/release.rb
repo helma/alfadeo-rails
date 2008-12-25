@@ -7,6 +7,7 @@ class Release < ActiveRecord::Base
   file_column :zip
 
   before_save :create_zip
+  before_save :update_tracks
 
   def create_zip
     if self.publish
@@ -17,7 +18,7 @@ class Release < ActiveRecord::Base
 
         if self.image
           image_type = File.extname(self.image)
-          zipfile.add("alfadeo-#{name}/#{name}.#{image-type}",self.image)
+          zipfile.add("alfadeo-#{name}/#{name}#{image_type}",self.image)
         end
 
         if self.sorted_tracks
@@ -29,15 +30,20 @@ class Release < ActiveRecord::Base
 
       end
       self.zip = File.open(tmp_zip)
-      #FileUtils.rm(tmp_zip) if File.exist?(tmp_zip)
     end
   end
 
+	def update_tracks
+		self.tracks.each do |t|
+			t.save
+		end
+	end
+
   def sorted_tracks
     begin
-      tracks.sort{|a,b| a.position <=> b.position}
+      self.tracks.sort{|a,b| a.position <=> b.position}
     rescue
-      tracks
+      self.tracks
     end
   end
 
@@ -52,7 +58,7 @@ class Release < ActiveRecord::Base
   def duration
     length = 0.0
     tracks.each do |t|
-      length += File.size?(t.file).to_f/1024/1024
+      length += t.length
     end
     min = (length/60).to_i
     sec = sprintf("%02d", length - 60*min.to_f)
