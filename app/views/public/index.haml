@@ -1,8 +1,7 @@
 .container
   .titel Welcome to alfadeo!
   .text
-    We are an electronic live band from Freiburg/Germany.
-    %br All tracks are live recordings and have been slightly edited and mastered for this website.
+    Edited live recordings from alfadeo (Freiburg/Germany).
   .releases
     %table
       %tr
@@ -11,9 +10,9 @@
         %tr
           %td
             = link_to image_tag(url_for_file_column(r, "image"), :size => "50x38"), :action => 'show', :id => r.id if r.image
-          %td
-            = r.description
-          %th.right
+          %td.left
+            = r.description + " (" + r.date.to_s + ")"
+          %th.left
             = link_to r.name, :action => 'show', :id => r.id
 
   .license

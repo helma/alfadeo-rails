@@ -2,6 +2,8 @@ class TracksController < ApplicationController
 
   active_scaffold :track do |config|
     config.actions << :sortable
+    config.show.link = false 
+    config.columns = ['name', 'file']
   end
 
 =begin
@@ -53,19 +55,6 @@ class TracksController < ApplicationController
 		zip_file = 'alfadeo-' + params[:collection].pluralize + '-' + session[:format] + '.zip'
 		zip_path = RAILS_ROOT + '/public/tracks/' +  zip_file
 		send_file zip_path, :filename => zip_file, :type => 'application/zip', :stream => false
-	end
-
-	def play_all
-		m3u = ''
-		tracks = Track.find_all_by_track_type(params[:collection], :order => 'position')
-		tracks.each do |track|
-			if !track.hidden
-				host = request.host + ':' + request.port.to_s
-				url = track.get_url(host,params[:format],track.id.to_s)
-				m3u = m3u + url + "\n"
-			end
-		end
-		send_data m3u, :filename => "alfadeo.m3u", :type => 'audio/mpegurl'
 	end
 
 	def download_selection

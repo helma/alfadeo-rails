@@ -15,16 +15,20 @@ ActiveRecord::Schema.define(:version => 20081219172618) do
     t.string  "name"
     t.string  "description"
     t.string  "image"
-    t.date    "date"
+    t.string  "zip"
+    t.date    "date",        :default => '2008-12-24'
     t.boolean "publish",     :default => false
     t.integer "position"
+    t.integer "nr"
   end
 
   create_table "tracks", :force => true do |t|
     t.string  "name"
     t.integer "position"
+    t.string  "internal"
     t.string  "file"
     t.integer "release_id"
+    t.float   "length"
   end
 
   create_table "users", :force => true do |t|

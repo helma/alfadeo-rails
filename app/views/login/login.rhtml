@@ -1,5 +1,5 @@
-<% if @flash[:notice] %><div class="notice"><%= @flash[:notice] %></div><% end %>
-<%= form_tag %>
+<% if flash[:notice] %><div class="notice"><%= flash[:notice] %></div><% end %>
+  <% form_tag 'login' do |f|%>
 
 <table>
 	<tr>
@@ -15,4 +15,4 @@
 	</tr>
 </p>
 </table>
-<%= end_form_tag %>
+<% end %>

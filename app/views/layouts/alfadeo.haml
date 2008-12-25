@@ -4,17 +4,19 @@
   %head
     = javascript_include_tag :defaults 
     = active_scaffold_includes
-    = stylesheet_link_tag 'public' 
+    = stylesheet_link_tag 'public' if controller.controller_name == 'public' or controller.action_name == 'preview'
     %title
       alfadeo
 
   %body
 
     .main
-
-      .nav
-        .menu
-          = link_to 'Home', :action => 'index'
-        .logo alfadeo
-              
+      - if controller.controller_name == 'public' or controller.action_name == 'preview'
+        .nav
+          .menu
+            = link_to 'Home', :action => 'index'
+          .logo alfadeo
+      - else
+        %h1 alfadeo administration
+ 
       = @content_for_layout 
