@@ -22,4 +22,20 @@ class PublicController < ApplicationController
 		send_data m3u, :filename => "#{release.name}.m3u", :type => 'audio/mpegurl'
 	end
 
+=begin
+  def resize
+     width, height = 100, 100
+
+     img =  Magick::Image.read('tmp.jpg').first
+     thumb = img.resize(width, height)
+     
+     # If you want to save this image use following
+     # thumb.write("mythumbnail.jpg")
+
+     # otherwise send it to the browser as follows
+     send_data(thumb.to_blob, :disposition => 'inline', 
+                            :type => 'image/jpg')
+   end
+=end
+
 end

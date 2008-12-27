@@ -1,5 +1,3 @@
-require "mp3info"
-
 class Track < ActiveRecord::Base
 
   belongs_to :release

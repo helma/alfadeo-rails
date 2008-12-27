@@ -18,7 +18,7 @@
           %td.size
             = t.duration
           %td.play
-            = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13"), url_for_file_column(t,"file")
+            = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), url_for_file_column(t,"file")
 
       %tr
         %td &nbsp;
@@ -29,14 +29,14 @@
         %td.size
           = @release.duration
         %td.play
-          = link_to(image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13"), :action => :play, :id => @release.id )
+          = link_to(image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), :action => :play, :id => @release.id )
       %tr
         %td.trackname
           = link_to "download all (zip)", url_for_file_column(@release, "zip")
         %td.size
           = sprintf("%.2f", File.size?(@release.zip).to_f/1024/1024)+"&nbsp;MB" if File.exists?(@release.zip)
         %td.download
-          = link_to image_tag("download.gif",:alt => 'download', :size => "13x13"), url_for_file_column(@release, "zip")
+          = link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), url_for_file_column(@release, "zip")
 
   .license
     = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")

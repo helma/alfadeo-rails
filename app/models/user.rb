@@ -1,4 +1,3 @@
-require 'digest/md5'
 class User < ActiveRecord::Base
 
 	def validate

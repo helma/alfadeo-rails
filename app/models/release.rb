@@ -1,5 +1,3 @@
-require 'zip/zipfilesystem'
-
 class Release < ActiveRecord::Base
 
   has_many :tracks
