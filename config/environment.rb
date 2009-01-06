@@ -66,5 +66,5 @@ ENV['GEM_PATH'] = "#{RAILS_ROOT}/vendor/lib/ruby/gems/1.8"
 require 'digest/md5'
 require 'zip/zipfilesystem'
 require "mp3info"
-require 'RMagick'
+#require 'RMagick'
 
