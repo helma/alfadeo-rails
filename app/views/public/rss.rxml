@@ -1,0 +1,20 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("Alfadeo")
+    xml.link(url_for("http://www.alfadeo.de"))
+    xml.description("Free electronic music")
+    xml.language('en-us')
+  
+    @releases.each do |r|
+       xml.item {
+         xml.title r.name
+         xml.link "http://www.alfadeo.de/public/show/#{r.id}"
+         xml.description r.description
+         xml.pubDate r.date
+         xml.guid "http://www.alfadeo.de/public/show/#{r.id}"
+         xml.author "Alfadeo"
+       }
+     end
+  }
+}

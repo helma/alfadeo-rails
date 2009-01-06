@@ -22,6 +22,16 @@ class PublicController < ApplicationController
 		send_data m3u, :filename => "#{release.name}.m3u", :type => 'audio/mpegurl'
 	end
 
+  def rss
+    @releases = Release.find(:all, :conditions => ['publish = ?',true]).sort{|a,b| a.position <=> b.position}
+    render :layout => false
+  end
+
+  def atom
+    @releases = Release.find(:all, :conditions => ['publish = ?',true]).sort{|a,b| a.position <=> b.position}
+    render :layout => false
+  end
+
 =begin
   def resize
      width, height = 100, 100

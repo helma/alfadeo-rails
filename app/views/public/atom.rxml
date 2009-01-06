@@ -1,0 +1,13 @@
+xml.instruct! :xml, :version=>"1.0"
+xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
+  xml.title("Alfadeo")
+  xml.id(url_for "http://www.alfadeo.de")
+  xml.link(url_for "http://www.alfadeo.de")
+  @releases.each do |r|
+    xml.entry {
+      xml.title(r.name)
+      xml.link "http://www.alfadeo.de/public/show/#{r.id}"
+      xml.summary(r.description)
+    }
+  end
+end
