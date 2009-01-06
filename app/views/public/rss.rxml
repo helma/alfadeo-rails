@@ -11,9 +11,9 @@ xml.rss(:version=>"2.0"){
          xml.title r.name
          xml.link "http://www.alfadeo.de/public/show/#{r.id}"
          xml.description r.description
-         xml.pubDate r.date
+         xml.pubDate r.date.strftime("%a, %d %b %Y %H:%M:%S %z")
          xml.guid "http://www.alfadeo.de/public/show/#{r.id}"
-         xml.author "Alfadeo"
+         xml.author "helma@in-silico.de"
        }
      end
   }
