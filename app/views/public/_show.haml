@@ -1,24 +1,26 @@
 .container
   .titel
-    = @release.name
+    = @playlist.title
   .text
-    = @release.date
+    = @playlist.release_month.to_s + '/' + @playlist.release_year.to_s
     %br
-    = @release.description
+    = @playlist.description
   .image
-    = image_tag url_for_file_column(@release,"image"), :size => "500x375"  if @release.image
+    = image_tag @playlist.artwork_url, :size => "500x375"  
   .tracks
     %table
       %tr
         %td &nbsp;
-      - @release.sorted_tracks.each do |t|
+      - @playlist.tracks.each do |t|
         %tr
           %td.trackname
-            = t.name
+            = t.title
           %td.size
-            = t.duration
+            = formatted_duration t.duration
+          %td.download
+            = link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), t.download_url
           %td.play
-            = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), url_for_file_column(t,"file")
+            = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), t.stream_url
 
       %tr
         %td &nbsp;
@@ -27,16 +29,17 @@
       %tr
         %td.trackname play all
         %td.size
-          = @release.duration
+          = formatted_duration @playlist.duration
+        %td &nbsp;
         %td.play
-          = link_to(image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), :action => :play, :id => @release.id )
+          = link_to(image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), :action => :play, :id => @playlist.id )
       %tr
         %td.trackname
-          = link_to "download all (zip)", url_for_file_column(@release, "zip")
+          =# link_to "download all (zip)", url_for_file_column(@playlist, "zip")
         %td.size
-          = sprintf("%.2f", File.size?(@release.zip).to_f/1024/1024)+"&nbsp;MB" if File.exists?(@release.zip)
+          =# sprintf("%.2f", File.size?(@playlist.zip).to_f/1024/1024)+"&nbsp;MB" if File.exists?(@playlist.zip)
         %td.download
-          = link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), url_for_file_column(@release, "zip")
+          =# link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), url_for_file_column(@playlist, "zip")
 
   .license
     = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")
