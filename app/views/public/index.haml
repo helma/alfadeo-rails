@@ -8,14 +8,14 @@
         %th Releases
       %tr
         %td &nbsp;
-      - @releases.each do |r|
+      - @playlists.each do |playlist|
         %tr
           %td
-            = link_to image_tag(url_for_file_column(r, "image"), :size => "50x38"), :action => 'show', :id => r.id if r.image
+            = link_to image_tag(playlist.artwork_url, :size => "50x38"), :action => 'show', :id => playlist.id 
           %td.left
-            = r.description + " (" + r.date.to_s + ")"
+            = playlist.description + " (" + playlist.release_month.to_s + "/" + playlist.release_year.to_s + ")"
           %th.left
-            = link_to r.name, :action => 'show', :id => r.id
+            = link_to playlist.title, :action => 'show', :id => playlist.id
 
   .license
     = link_to(image_tag("http://i.creativecommons.org/l/by-sa/3.0/88x31.png",{:alt => "Creative Commons License"}),  "http://creativecommons.org/licenses/by-sa/3.0/")
