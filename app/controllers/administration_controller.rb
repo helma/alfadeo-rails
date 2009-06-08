@@ -7,7 +7,8 @@ class AdministrationController < ApplicationController
     config.action_links.add 'preview', :type => :record ,:page => true, :label => 'Preview'
     config.action_links.add 'home',:page => true, :label => 'Home'
     config.show.link = false 
-    config.columns = ['publish', 'name', 'description', 'image', 'tracks', 'date']
+    #config.columns = ['publish', 'name', 'description', 'image', 'tracks', 'date']
+    config.columns = ['publish', 'name', 'description', 'tracks', 'date']
     columns[:publish].form_ui = :checkbox
     columns[:description].form_ui = :textarea
   end

@@ -63,8 +63,9 @@ end
 # Include your application configuration below
 ENV['GEM_HOME'] = "#{RAILS_ROOT}/vendor/lib/ruby/gems/1.8"
 ENV['GEM_PATH'] = "#{RAILS_ROOT}/vendor/lib/ruby/gems/1.8"
+ENV['LD_LIBRARY_PATH'] = "#{ENV['LD_LIBRARY_PATH']}:/opt/ruby-enterprise-1.8.6-20081215/lib/ruby/gems/1.8/gems/rmagick-2.8.0/lib/"
 require 'digest/md5'
 require 'zip/zipfilesystem'
 require "mp3info"
-#require 'RMagick'
+require 'RMagick'
 
