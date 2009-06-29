@@ -13,7 +13,8 @@
           %td
             = link_to image_tag(playlist.artwork_url, :size => "50x38"), :action => 'show', :id => playlist.id 
           %td.left
-            = playlist.description + " (" + playlist.release_month.to_s + "/" + playlist.release_year.to_s + ")"
+            = playlist.description if playlist.description
+            = " (" + playlist.release_month.to_s + "/" + playlist.release_year.to_s + ")" 
           %th.left
             = link_to playlist.title, :action => 'show', :id => playlist.id
 
