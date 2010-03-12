@@ -18,7 +18,7 @@
           %td.size
             = formatted_duration t.duration
           %td.download
-            = link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), t.download_url
+            = link_to image_tag("download.gif",:alt => 'download', :size => "13x13",:mouseover => "/images/download-hover.gif"), t.download_url if t.downloadable
           %td.play
             = link_to image_tag("loudspeaker.gif",:alt => 'play', :size => "13x13",:mouseover => "/images/loudspeaker-hover.gif"), t.stream_url
 
